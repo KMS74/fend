@@ -6,7 +6,7 @@ const d = new Date();
 // const newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
 const newDate = d.toDateString();
 // Personal API Key for OpenWeatherMap API
-const API_KEY = "d968143461ae00c81bed6853f9732ad8";
+const API_KEY = "d968143461ae00c81bed6853f9732ad8&units=metric";
 const baseUrl = "https://api.openweathermap.org/data/2.5/weather?zip";
 
 /* Function to GET Web API Data*/
@@ -15,7 +15,7 @@ async function getWeatherData(zipCode) {
     alert("please Enter A valid ZIP Code! try 90001 ");
     return;
   }
-  const url = `${baseUrl}=${zipCode},us&appid=${API_KEY}&units=metric`;
+  const url = `${baseUrl}=${zipCode},us&appid=${API_KEY}`;
   const res = await fetch(url);
   try {
     const data = await res.json();
@@ -55,7 +55,7 @@ async function updateUI() {
   // updating UI
   try {
     document.getElementById("date").innerHTML = data.date;
-    document.getElementById("temp").innerHTML = data.temp + " degC";
+    document.getElementById("temp").innerHTML = data.temp + "degrees";
     document.getElementById("content").innerHTML = data.feelings;
   } catch (error) {
     console.error("ERROR", error);
